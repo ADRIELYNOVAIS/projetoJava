@@ -1,4 +1,4 @@
-# projetoJava
+# Projeto_Java
 
 Objetivo do sistema: Desenvolver um sistema em Java para controlar o acervo de livros e empréstimos de livros aos alunos de uma biblioteca. O sistema deverá cadastrar os livros, registrar os empréstimos e ter a situação dos empréstimos.
 
