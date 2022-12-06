@@ -2,7 +2,7 @@ import java.util.Date;
 
 public class EmprestimoLivro{
     
-    private boolean estadoEmprestimo;
+    private boolean estadoEmprestimo
     private boolean renovacao;
     private Date dataEmprestimo;
     private Date dataDevolucao;
