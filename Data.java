@@ -1,7 +1,5 @@
-import java.util.Calendar;
 public class Data {
     private int day, month, year;
-    //private Calendar hoje = Calendar.getInstance();
     static private String[] week = { "Sabado", "Domingo", "Segunda", "Terca", "Quarta", "Quinta",
             "Sexta" };
     static private String[] mesExtenso = { "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho",
@@ -14,12 +12,12 @@ public class Data {
         this.year = year;
     }
 
-    public Data (Data otherDate){
+    public Data(Data otherDate) {
         this(otherDate.day, otherDate.month, otherDate.year);
     }
 
     public Data() {
-        this(01,01,1970);
+        this(01, 01, 1970);
     }
 
     // getters
@@ -35,7 +33,7 @@ public class Data {
         return year;
     }
 
-    //Métodos de validade
+    // Métodos de validade
     private boolean chekdate() {
         if ((day > 0 || day < 31) && (month > 0 || month < 13) && (year > 0)) {
             return true;
@@ -73,7 +71,22 @@ public class Data {
             return false;
     }
 
-    //Métodos de impressão data
+    public boolean isBisexto() {
+        if (year % 4 == 0) {
+            if (year % 100 == 0)
+                if (year % 400 == 0)
+                    return true;
+        }
+        if (year % 100 == 0)
+            if (year % 400 == 0)
+                return true;
+
+        if (year % 400 == 0)
+            return true;
+        return false;
+    }
+
+    // Métodos de impressão data
     public void infoDate() {
         if (chekdate()) {
             System.out.println(day + "/" + month + "/" + year);
@@ -96,8 +109,8 @@ public class Data {
         } else
             return "Erro";
     }
-    
-    //Métodos de verificação de dias
+
+    // Métodos de verificação de dias
     public int howManyDays(Data otherDate) {
         int result;
         if (isPrevious(otherDate)) {
@@ -124,59 +137,106 @@ public class Data {
         }
         return aux;
     }
-
-    public static int howManyDaysUntilEndYear(Data d){
-        //retornar a quantidade de dias desde a data d até o final do ano d
+    
+    //Metodos estaticos
+    public static int howManyDaysUntilEndYear(Data d) {
+        // retornar a quantidade de dias desde a data d até o final do ano d
         int soma;
         soma = d.day - 30;
-        return (soma += 30 * (d.month - 12))*-1;
+        return (soma += 30 * (d.month - 12)) * -1;
     }
 
-    public static int howManyDaysUtilNextMonth(Data d){
-        //retorna a quantidade de dias desde a data d ao dia primeiro do mes seguinte
-        //como saber a quantidade de dias que falta desde a data que eu tenho até o primeiro dia do mes seguinte?
-        return (d.day - 30)*-1 + 1;
+    public static int howManyDaysUtilNextMonth(Data d) {
+        // retorna a quantidade de dias desde a data d ao dia primeiro do mes seguinte
+        // como saber a quantidade de dias que falta desde a data que eu tenho até o
+        // primeiro dia do mes seguinte?
+        return (d.day - 30) * -1 + 1;
     }
 
-    public static boolean isBisexto(Data d){
-    //retorna verdadeiro se ano é bisexto
-    /*1.Se o ano for uniformemente divisível por 4, vá para a etapa 2. Caso contrário, vá para a etapa 5.
-    2.Se o ano for uniformemente divisível por 100, vá para a etapa 3. Caso contrário, vá para a etapa 4.
-    3.Se o ano for uniformemente divisível por 400, vá para a etapa 4. Caso contrário, vá para a etapa 5.
-    4.O ano é bissexto (tem 366 dias).
-    5.O ano não é um ano bissexto (tem 365 dias). */
-    if(d.year%4 == 0){
-        if(d.year%100 == 0)
-            if(d.year%400 == 0)
+    public static boolean isBisexto(Data d) {
+        // retorna verdadeiro se ano é bisexto
+        /*
+         * 1.Se o ano for uniformemente divisível por 4, vá para a etapa 2. Caso
+         * contrário, vá para a etapa 5.
+         * 2.Se o ano for uniformemente divisível por 100, vá para a etapa 3. Caso
+         * contrário, vá para a etapa 4.
+         * 3.Se o ano for uniformemente divisível por 400, vá para a etapa 4. Caso
+         * contrário, vá para a etapa 5.
+         * 4.O ano é bissexto (tem 366 dias).
+         * 5.O ano não é um ano bissexto (tem 365 dias).
+         */
+        if (d.year % 4 == 0) {
+            if (d.year % 100 == 0)
+                if (d.year % 400 == 0)
+                    return true;
+        }
+        if (d.year % 100 == 0)
+            if (d.year % 400 == 0)
                 return true;
-    }
-    if(d.year%100 == 0)
-        if(d.year%400 == 0)
+
+        if (d.year % 400 == 0)
             return true;
-
-    if(d.year%400 == 0) return true;
-    return false;
+        return false;
     }
 
-    public static String dayOfWeek(Data d){
-        //retorna de dia da semana pela data passada por parametro
-        if(chekdate(d.day, d.month, d.year)){
-        int result = d.day + 2 * d.month + (3 * (d.month + 1) / 5) + d.year + d.year / 4 - d.year / 100 + d.year / 400 + 2;
-        return week[result % 7];
+    public static String dayOfWeek(Data d) {
+        // retorna de dia da semana pela data passada por parametro
+        if (chekdate(d.day, d.month, d.year)) {
+            int result = d.day + 2 * d.month + (3 * (d.month + 1) / 5) + d.year + d.year / 4 - d.year / 100
+                    + d.year / 400 + 2;
+            return week[result % 7];
         }
         return "Data invalida";
     }
 
-    public static String dayToPrintShort(Data d){
-        //retornar a data no formato dd/mm/aaaa
+    public static String dayToPrintShort(Data d) {
+        // retornar a data no formato dd/mm/aaaa
         return d.day + "/" + d.month + "/" + d.year;
     }
 
-    public static String dayPrintLong(Data d){
-        //retorna a data por extenso
-        if(chekdate(d.day, d.month, d.year)){
-            return d.day +  " de " + mesExtenso[d.month-1] + " de " + d.year;
+    public static String dayPrintLong(Data d) {
+        // retorna a data por extenso
+        if (chekdate(d.day, d.month, d.year)) {
+            return d.day + " de " + mesExtenso[d.month - 1] + " de " + d.year;
         }
         return "Erro: data invalida";
+    }
+
+    // Acrecenta a quantidade de dias passada por paramatro na data.
+    public void moreDays(int acrescimo) {
+        day += acrescimo;
+
+        if (day > 32) {
+            if (month % 3 == 0 && month <= 7) {
+                // Meses antes de julho impares são de 31 dias
+                if (month == 2) {
+                    // Se o mês for fevereiro:
+                    if (isBisexto()) {
+                        // Em anos bisextos o mes de fevereiro tem mais um dias (29 dias)
+                        day -= 29;
+                        month++;
+                    }
+                    day -= 28;
+                    month++;
+                }
+            }
+
+            // Para meses pares depois de julho
+            if (month % 2 == 0 && month > 7) {
+                // Meses depois de julho pares sao de 31 dias
+                day -= 31;
+                month++;
+            }
+
+            day -= 30;
+            month++;
+        }
+
+        if (month > 12) {
+            // Mês é maior que doze então é o ano seguinte
+            month = 1;
+            year++;
+        }
+
     }
 }

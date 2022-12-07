@@ -3,11 +3,12 @@ import java.util.Date;
 public class Aluno{
 
     private String nome, email, endereco;
-    private int matricula, telefone,cpf;
+    private int matricula, telefone;
+    private long cpf;
     private Date dataNascimento;
     
     //Construtor
-    public Aluno(String nome, String email, String endereco, int matricula, int telefone, int cpf,
+    public Aluno(String nome, String email, String endereco, int matricula, int telefone, long cpf,
             Date dataNascimento) {
         this.nome = nome;
         this.email = email;
@@ -39,7 +40,7 @@ public class Aluno{
         return telefone;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
