@@ -6,70 +6,57 @@ public class Aluno{
     private int matricula, telefone,cpf;
     private Date dataNascimento;
     
-    public void nome( String nomeAluno){
-        this.nome = nomeAluno;
+    //Construtor
+    public Aluno(String nome, String email, String endereco, int matricula, int telefone, int cpf,
+            Date dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.matricula = matricula;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
-    public void matricula( int matriculaAluno ){
-        this.matricula = matriculaAluno;
-    }
-
-    public void dataNascimento( Date dataNascimentoAluno ){
-        this.dataNascimento = dataNascimentoAluno;
-    }
-
-    public void email( String emailAluno ){
-        this.email = emailAluno;
-    }
-
-    public void endereco( String enderecoAluno ){
-        this.endereco = enderecoAluno;
-    }
-
-    public void telefone( int telefoneAluno ){
-        this.telefone = telefoneAluno;
-    }
-
-    public void cpf( int cpfAluno ){
-        this.cpf = cpfAluno;
-    }
-
-    public String nome(){
+    //Getter's
+    public String getNome() {
         return nome;
     }
 
-    public String email(){
+    public String getEmail() {
         return email;
     }
 
-    public String endereco(){
+    public String getEndereco() {
         return endereco;
     }
 
-    public int matricula(){
+    public int getMatricula() {
         return matricula;
     }
 
-    public int telefone(){
+    public int getTelefone() {
         return telefone;
     }
 
-    public int cpf(){
+    public int getCpf() {
         return cpf;
     }
 
-    public Date data(){
+    public Date getDataNascimento() {
         return dataNascimento;
     }
-
-    /*public String imprimeAluno(){
-        String imprimir;
-
-        imprimir = "Nome do aluno: " + nome + "\n Matricula do aluno: " + matricula + "\n Data de NAscimento do aluno" + dataNascimento + "CPF do aluno: " + cpf + "\n Telefone do aluno: " + telefone + "\n Endereco do aluno : " + endereco + "\nEmail do aluno: " + email;
-
-        return imprimir;
-    }*/
-
+    
+    //Impressão
+    public String toString(){
+        return "Nome: " + nome + "\n" + "Matricula: " + matricula;
+    }
+    
+    public String toStringLong(){
+        return "Nome: " + nome + "\n" + "CPF: " + cpf + "\n" + "Data de nascimento: " 
+        + dataNascimento + "\n" + "Matricula: " + matricula + "\n" + "Telefone: " + telefone + "\n" + 
+        "Endereco: " + endereco + "\n" + "E-mail: " + email;
+    }
     
 
     /*RFU3.1- O Deve ser possível incluir, visualizar, alterar e excluir um aluno no
