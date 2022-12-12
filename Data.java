@@ -33,6 +33,19 @@ public class Data {
         return year;
     }
 
+    // setters
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     // Métodos de validade
     private boolean chekdate() {
         if ((day > 0 || day < 31) && (month > 0 || month < 13) && (year > 0)) {
@@ -87,18 +100,18 @@ public class Data {
     }
 
     // Métodos de impressão data
-    public void infoDate() {
+    public String infoDate() {
         if (chekdate()) {
-            System.out.println(day + "/" + month + "/" + year);
+            return day + "/" + month + "/" + year;
         } else
-            System.out.println("Data invalida.");
+            return "Data invalida.";
     }
 
-    public void infoDateExt() {
+    public String infoDateExt() {
         if (chekdate()) {
-            System.out.println(day + " de " + mesExtenso[month - 1] + " de " + year);
+            return day + " de " + mesExtenso[month - 1] + " de " + year;
         } else {
-            System.out.println("Data Invalida.");
+            return "Data Invalida.";
         }
     }
 
@@ -137,8 +150,8 @@ public class Data {
         }
         return aux;
     }
-    
-    //Metodos estaticos
+
+    // Metodos estaticos
     public static int howManyDaysUntilEndYear(Data d) {
         // retornar a quantidade de dias desde a data d até o final do ano d
         int soma;
@@ -206,30 +219,27 @@ public class Data {
     public void moreDays(int acrescimo) {
         day += acrescimo;
 
-        if (day > 32) {
+        if (day > 31) {
             if (month % 3 == 0 && month <= 7) {
                 // Meses antes de julho impares são de 31 dias
-                if (month == 2) {
-                    // Se o mês for fevereiro:
-                    if (isBisexto()) {
-                        // Em anos bisextos o mes de fevereiro tem mais um dias (29 dias)
-                        day -= 29;
-                        month++;
-                    }
-                    day -= 28;
+                day = day - 31;
+                month++;
+            } else if (month == 2) {
+                // Se o mês for fevereiro:
+                if (isBisexto()) {
+                    // Em anos bisextos o mes de fevereiro tem mais um dias (29 dias)
+                    day -= 29;
                     month++;
                 }
-            }
-
-            // Para meses pares depois de julho
-            if (month % 2 == 0 && month > 7) {
-                // Meses depois de julho pares sao de 31 dias
-                day -= 31;
+                day -= 28;
                 month++;
             }
-
-            day -= 30;
-            month++;
+            // Para meses pares depois de julho
+            else if (month % 2 == 0 && month > 7) {
+                // Meses depois de julho pares sao de 31 dias
+                day = day - 31;
+                month++;
+            }
         }
 
         if (month > 12) {

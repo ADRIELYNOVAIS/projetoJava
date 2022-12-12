@@ -1,11 +1,11 @@
 class Queue {
     private int inicio, fim, qtdeElementos;
     private static int TAMANHO = 4;
-    private Livro[] livroArmazenado;
+    private Aluno[] armazenado;
 
     public Queue() {
         inicio = fim = -1;
-        livroArmazenado = new Livro[TAMANHO];
+        armazenado = new Aluno[TAMANHO];
         qtdeElementos = 0;
     }
 
@@ -16,26 +16,10 @@ class Queue {
         return false;
     }
 
-    private boolean isFull() {
-        if (qtdeElementos == TAMANHO - 1) {
+    private boolean isFull(){
+        if(qtdeElementos == TAMANHO)
             return true;
-        }
         return false;
-    }
-
-    public void insert(Livro elementLivro) {
-        if (!isFull()) {
-            if (inicio == -1) {
-                inicio = 0;
-            }
-            //Verificar se o livro que quero emprestar ja foi emprestado :)
-            if (!elementLivro.isLent()) {
-                fim++;
-                livroArmazenado[fim] = elementLivro;
-                qtdeElementos++;
-            }
-        } else
-            System.out.println("ALUNO ATINGIU O NUMERO MAXIMO DE LIVROS");
     }
 
     public void remove() {
@@ -47,8 +31,25 @@ class Queue {
 
     public void print() {
         for (int i = inicio; i <= fim; i++) {
-            Livro elementos = livroArmazenado[i];
+            Aluno elementos = armazenado[i];
             System.out.println(elementos);
         }
+    }
+
+    public void insert(Aluno aluno){
+        if(!isFull()){
+            armazenado[fim] = aluno;
+            qtdeElementos++;
+            fim++;
+        }
+        System.out.println("CHEIO!!!");
+    }
+
+    public Aluno search(int matricula) {
+        for (int i = 0; i < armazenado.length; i++) {
+            if (armazenado[i].getMatricula() == matricula)
+                return armazenado[i];
+        }
+        return null;
     }
 }
