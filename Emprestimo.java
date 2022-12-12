@@ -57,7 +57,11 @@ public class Emprestimo extends EmprestimoLivro{
 
     }else{
       System.out.println(" Opcao invalida ");
-    }   
+    } 
 
+    //STATUS DO LIVRO
+        //DATA DO EMPRESTIMO
+    //RENOVAÇÃO
+    //EMPRESTIMO
   }
 }
