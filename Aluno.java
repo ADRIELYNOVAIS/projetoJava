@@ -1,75 +1,103 @@
-import java.util.Date;
-
 public class Aluno{
 
     private String nome, email, endereco;
-    private int matricula, telefone,cpf;
-    private Date dataNascimento;
+    private int matricula, telefone;
+    private long cpf;
+    private Data dataNascimento;
+    //private Livro livro;
     
-    public void nome( String nomeAluno){
-        this.nome = nomeAluno;
+    //Construtor
+    public Aluno(String nome, String email, String endereco, int matricula, int telefone, long cpf,
+            Data dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.matricula = matricula;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+    //Construtor para cadastro do aluno
+    public Aluno(String nomeString, String emailString, int matriculaInt, int telefoneInt, Long cpfLong, Data dataNascimento){
+        this(nomeString, emailString, emailString, matriculaInt, telefoneInt, telefoneInt, dataNascimento);
     }
 
-    public void matricula( int matriculaAluno ){
-        this.matricula = matriculaAluno;
-    }
-
-    public void dataNascimento( Date dataNascimentoAluno ){
-        this.dataNascimento = dataNascimentoAluno;
-    }
-
-    public void email( String emailAluno ){
-        this.email = emailAluno;
-    }
-
-    public void endereco( String enderecoAluno ){
-        this.endereco = enderecoAluno;
-    }
-
-    public void telefone( int telefoneAluno ){
-        this.telefone = telefoneAluno;
-    }
-
-    public void cpf( int cpfAluno ){
-        this.cpf = cpfAluno;
-    }
-
-    public String nome(){
+    //Getter's
+    public String getNome() {
         return nome;
     }
 
-    public String email(){
+    public String getEmail() {
         return email;
     }
 
-    public String endereco(){
+    public String getEndereco() {
         return endereco;
     }
 
-    public int matricula(){
+    public int getMatricula() {
         return matricula;
     }
 
-    public int telefone(){
+    public int getTelefone() {
         return telefone;
     }
 
-    public int cpf(){
+    public long getCpf() {
         return cpf;
     }
 
-    public Date data(){
+    public Data getDataNascimento() {
         return dataNascimento;
     }
 
-    /*public String imprimeAluno(){
-        String imprimir;
+    //Setter's
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-        imprimir = "Nome do aluno: " + nome + "\n Matricula do aluno: " + matricula + "\n Data de NAscimento do aluno" + dataNascimento + "CPF do aluno: " + cpf + "\n Telefone do aluno: " + telefone + "\n Endereco do aluno : " + endereco + "\nEmail do aluno: " + email;
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        return imprimir;
-    }*/
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setDataNascimento(Data dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public boolean equals(Aluno obj){
+        if(this == obj){
+            return true;
+        }else if (this.matricula == obj.matricula){
+            return true;
+        }
+        return false;
+    }
+    //Impressão
+    public String toString(){
+        return "Nome: " + nome + "\n" + "Matricula: " + matricula;
+    }
+    
+    public String toStringLong(){
+        return "Nome: " + nome + "\n" + "CPF: " + cpf + "\n" + "Data de nascimento: " 
+        + dataNascimento + "\n" + "Matricula: " + matricula + "\n" + "Telefone: " + telefone + "\n" + 
+        "Endereco: " + endereco + "\n" + "E-mail: " + email;
+    }
     
 
     /*RFU3.1- O Deve ser possível incluir, visualizar, alterar e excluir um aluno no
