@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import Dados.Aluno;
+import Dados.Data;
+import Dados.Livro;
+
 public class main {
     public static void main(String[] args) {
 

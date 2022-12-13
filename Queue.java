@@ -1,3 +1,5 @@
+import Dados.Aluno;
+
 class Queue {
     private int inicio, fim, qtdeElementos;
     private static int TAMANHO = 4;

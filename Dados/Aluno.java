@@ -1,3 +1,4 @@
+package Dados;
 public class Aluno{
 
     private String nome, email, endereco;
@@ -21,6 +22,8 @@ public class Aluno{
     public Aluno(String nomeString, String emailString, int matriculaInt, int telefoneInt, Long cpfLong, Data dataNascimento){
         this(nomeString, emailString, emailString, matriculaInt, telefoneInt, telefoneInt, dataNascimento);
     }
+
+    public Aluno (){}
 
     //Getter's
     public String getNome() {

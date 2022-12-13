@@ -1,3 +1,4 @@
+package Dados;
 public class Data {
     private int day, month, year;
     static private String[] week = { "Sabado", "Domingo", "Segunda", "Terca", "Quarta", "Quinta",
