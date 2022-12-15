@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.concurrent.CancellationException;
 
 import javax.swing.text.html.HTMLDocument.RunElement;
 
@@ -186,8 +187,9 @@ public class Biblioteca {
                 } 
     }
 
-    public void cadastroEmprestimo() {
+    public static void cadastroEmprestimo() {
 
+        Scanner scanner = new Scanner(System.in);
         Aluno aluno = new Aluno();
         Livro livro = new Livro(endereco, email, telefone, buscaMatricula);
 

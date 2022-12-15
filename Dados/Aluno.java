@@ -23,7 +23,7 @@ public class Aluno{
         this(nomeString, emailString, emailString, matriculaInt, telefoneInt, telefoneInt, dataNascimento);
     }
 
-    //public Aluno (){}
+    public Aluno (){}
 
     //Getter's
     public String getNome() {
