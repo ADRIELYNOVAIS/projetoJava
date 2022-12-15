@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+import javax.swing.text.html.HTMLDocument.RunElement;
+
 import Arvore.Tree;
 import Arvore.TreeLivro;
 import Dados.Aluno;
@@ -6,25 +9,20 @@ import Dados.Data;
 
 public class Biblioteca {
 
-    private int buscaMatricula;
-    private Aluno aluno;
-    protected Scanner scanner = new Scanner(System.in);
-    protected Scanner scannerStrings = new Scanner(System.in);
+    public static void cadatroAluno(Tree arv) {
+        Aluno aluno;
 
-    protected String nome, endereco, email;
-    protected int telefone;
-    protected long cpf;
+        String nome, endereco, email;
+        int telefone, buscaMatricula;
+        long cpf;
 
-    Tree arv = new Tree();
-    TreeLivro arvLivro = new TreeLivro();
-
-
-    public void cadatroAluno() {
+        Scanner scanner = new Scanner(System.in);
+        Scanner scannerStrings = new Scanner(System.in);
 
         System.out.print("Digite matricula do aluno: ");
         buscaMatricula = scanner.nextInt();
 
-        if (!jaExiste(buscaMatricula)) {
+        if (!jaExiste(buscaMatricula, arv)) {
             System.out.print("Digite o nome do aluno -> ");
             nome = scannerStrings.next();
 
@@ -50,7 +48,10 @@ public class Biblioteca {
         System.out.println("Aluno ja tem cadastro.");
     }
 
-    public void excluirAluno() {
+    public static void excluirAluno(Tree arv) {
+        int buscaMatricula;
+        Scanner scanner = new Scanner(System.in);
+
         System.out.print("\n Informe a matricula do aluno para remover -> ");
         buscaMatricula = scanner.nextInt();
 
@@ -60,8 +61,11 @@ public class Biblioteca {
             System.out.println("Aluno excluido com sucesso.");
     }
 
-    public void alterarAluno() {
+    public static void alterarAluno(Tree arv) {
         Aluno auxAluno = new Aluno();
+        Scanner scanner = new Scanner(System.in);
+        Scanner scannerStrings = new Scanner(System.in);
+        int buscaMatricula;
 
         System.out.print("\n Informe a matricula -> ");
         buscaMatricula = scanner.nextInt();
@@ -96,56 +100,88 @@ public class Biblioteca {
             auxAluno.setDataNascimento(nacimento);
 
             arv.inserir(auxAluno);
-
+            
         } else
-            System.out.print("\n Aluno nao encontrado!");
+        System.out.print("\n Aluno nao encontrado!");
     }
 
-    public void buscarAluno() {
+    public static String buscarAluno(Tree arv) {
         Aluno auxAluno = new Aluno();
+        Scanner scanner = new Scanner(System.in);
+        int buscaMatricula;
 
         System.out.print("\n Informe a matricula -> ");
         buscaMatricula = scanner.nextInt();
 
+        
         if ((auxAluno = arv.buscar(buscaMatricula)) != null) {
             System.out.print("\n Aluno encontrado");
-            System.out.println(auxAluno.toStringLong());
+            return auxAluno.toStringLong();
         } else
-            System.out.print("\n Aluno nao encontrado!");
+            return "\n Aluno nao encontrado!";
+
     }
 
-    public void imprimirArvore() {
+    public static void imprimirArvore(Tree arv) {
         arv.caminhar();
     }
 
-    //verifica se ja tem alguem com a matricula passada por parametro.
-    private boolean jaExiste(int buscaMatricula) {
+    // verifica se ja tem alguem com a matricula passada por parametro.
+    private static boolean jaExiste(int buscaMatricula, Tree arv) {
         if (arv.buscar(buscaMatricula) != null) {
             return true;
         }
         return false;
     }
 
-    public void cadastroLivro(){
-        String titulo, editora;
-        int idLivro, numeroPagina, edicao;
+    /*
+     * public void cadastroLivro(Tree arv){
+     * String titulo, editora;
+     * int idLivro, numeroPagina, edicao;
+     * 
+     * System.out.println("Digite o titulo: ");
+     * titulo = scanner.nextLine();
+     * 
+     * System.out.println("Digite a edicao: ");
+     * edicao = scanner.nextInt();
+     * 
+     * System.out.println("Digite a editora: ");
+     * editora = scanner.nextLine();
+     * 
+     * System.out.println("Digite o id do livro: ");
+     * idLivro = scanner.nextInt();
+     * 
+     * System.out.println("Digite o numero de paginas: ");
+     * numeroPagina = scanner.nextInt();
+     * 
+     * //Livro livro = new Livro(titulo, editora, idLivro, numeroPagina, edicao);
+     * // System.out.println(livro);
+     * }
+     */
 
-        System.out.println("Digite o titulo: ");
-        titulo = scanner.nextLine();
+     public static void cadastroEmprestimo() {
+        Scanner scanner = new Scanner(System.in);
+        Aluno aluno = new Aluno();
+        Livro livro = new Livro(endereco, email, telefone, buscaMatricula);
 
-        System.out.println("Digite a edicao: ");
-        edicao = scanner.nextInt();
+        System.out.println( "Informe a matricula do aluno " );
+        int idAluno = scanner.nextInt();
+        scanner.nextLine();
 
-        System.out.println("Digite a editora: ");
-        editora = scanner.nextLine();
+        if ( idAluno == aluno.getMatricula() ) {
+            System.out.println( "Informe o codigo de identificacao do livro :" );
+            int idLivro = scanner.nextInt();
 
-        System.out.println("Digite o id do livro: ");
-        idLivro = scanner.nextInt();
-
-        System.out.println("Digite o numero de paginas: ");
-        numeroPagina = scanner.nextInt();
-
-        //Livro livro = new Livro(titulo, editora, idLivro, numeroPagina, edicao);
-        // System.out.println(livro);
+            if( idLivro == livro.getCodigIdentificacao() ) {
+                
+                Emprestimo emprestimo = new Emprestimo();
+                emprestimo.getEmprestimo();
+                
+            } else { 
+                System.out.println( "Livro nao disponivel para emprestimo" ); 
+                    }
+        } else {        
+             System.out.println( "E preciso cadastrar o aluno no sistema" ); 
+                } 
     }
 }

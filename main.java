@@ -1,10 +1,13 @@
 import java.util.Scanner;
+import Arvore.Tree;
+//import Arvore.TreeLivro;
 
-public class main{
+public class main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        // Queue alunosQueue = new Queue();
+        Tree alunoTree = new Tree();
+        // TreeLivro livroTree = new TreeLivro();
         int opcao = -1;
 
         do {
@@ -18,16 +21,38 @@ public class main{
 
             switch (opcao) {
                 case 1: {
+                    do {
+                        System.out.print("\n**********************************");
+                        System.out.print("\nEntre com a opcao:");
+                        System.out.print("\n ----1: Inserir aluno");
+                        System.out.print("\n ----2: Excluir aluno");
+                        System.out.print("\n ----3: Pesquisar aluno");
+                        System.out.print("\n ----4: Exibir alunos");
+                        System.out.print("\n ----5: Atualizar aluno");
+                        System.out.print("\n ----6: Sair");
+                        System.out.print("\n***********************************");
+                        System.out.print("\n-> ");
+                        opcao = scanner.nextInt();
 
-                    System.out.print("\n**********************************");
-                    System.out.print("\nEntre com a opcao:");
-                    System.out.print("\n ----1: Inserir aluno");
-                    System.out.print("\n ----2: Excluir aluno");
-                    System.out.print("\n ----3: Pesquisar aluno");
-                    System.out.print("\n ----4: Exibir alunos");
-                    System.out.print("\n ----5: Atualizar aluno");
-                    System.out.print("\n***********************************");
-                    System.out.print("\n-> ");
+                        switch (opcao) {
+                            case 1:
+                                Biblioteca.cadatroAluno(alunoTree);
+                                break;
+                            case 2:
+                                Biblioteca.excluirAluno(alunoTree);
+                                break;
+                            case 3:
+                                System.out.println(Biblioteca.buscarAluno(alunoTree));
+                                break;
+                            case 4:
+                                Biblioteca.imprimirArvore(alunoTree);
+                                break;
+                            case 5:
+                                Biblioteca.alterarAluno(alunoTree);
+                                break;
+                        }
+                    } while (opcao < 6);
+                    break;
                 }
                 case 2: {
                     System.out.print("\n**********************************");
@@ -41,7 +66,7 @@ public class main{
                     System.out.print("\n-> ");
                     break;
                 }
-                case 3:{
+                case 3: {
                     System.out.print("\n**********************************");
                     System.out.print("\nEntre com a opcao:");
                     System.out.print("\n ----1: Fazer emprestimo");
@@ -50,7 +75,23 @@ public class main{
                     System.out.print("\n***********************************");
                     System.out.print("\n-> ");
 
-                    
+                    opcao = scanner.nextInt();
+
+                    if (opcao == 1) {
+
+                        Biblioteca biblioteca = new Biblioteca();
+                        biblioteca.cadastroEmprestimo();
+                        break;
+                    }
+
+                    else if (opcao == 2) {
+
+                        Livro livro = new Livro(null, null, opcao, opcao);
+                        livro.renovar();
+                        break;
+                    } else {
+                        System.out.println(" Opcao invalida ");
+                    }
                 }
             }
         } while (opcao < 0);
