@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import Dados.Aluno;
+import Dados.Livro;
 
 public class main{
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class main{
                     System.out.print("\n-> ");
                     break;
                 }
-                case 3:{
+                case 3: {
                     System.out.print("\n**********************************");
                     System.out.print("\nEntre com a opcao:");
                     System.out.print("\n ----1: Fazer emprestimo");
@@ -50,10 +52,30 @@ public class main{
                     System.out.print("\n***********************************");
                     System.out.print("\n-> ");
 
-                    
-                }
-            }
-        } while (opcao < 0);
-        scanner.close();
-    }
+                    opcao = scanner.nextInt();
+
+                        if( opcao == 1 ) {
+
+                            Biblioteca biblioteca = new Biblioteca();
+                            biblioteca.cadastroEmprestimo();
+                            break;
+                                            } 
+
+                        else if( opcao == 2 ) {
+
+                             Livro livro = new Livro(null, null, opcao, opcao);
+                             livro.renovar();
+                             break;
+                                               }
+                         else {
+                            System.out.println(" Opcao invalida ");
+                              }
+                        }
+                              }
+                              
+            } while (opcao < 0);
+                scanner.close();  
+            
+                                            }
+    
 }
