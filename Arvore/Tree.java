@@ -9,6 +9,7 @@ public class Tree {
     root = null;
   } // inicializa arvore
 
+  //INSERIR UM ALUNO NA ARVORE
   public void inserir(Aluno v) {
     No novo = new No(); // cria um novo Nó
     novo.item = v; // atribui o valor recebido ao item de dados do Nó
@@ -38,7 +39,6 @@ public class Tree {
         } // fim da condição ir a direita
       } // fim do laço while
     } // fim do else não raiz
-
   }
 
   public Aluno buscar(int chave) {
@@ -56,7 +56,7 @@ public class Tree {
     return atual.item; // terminou o laço while e chegou aqui é pq encontrou item
   }
 
-  public boolean remover(Aluno v) {
+  public boolean remover(int v) {
     if (root == null)
       return false; // se arvore vazia
 
@@ -65,9 +65,9 @@ public class Tree {
     boolean filho_esq = true;
 
     // ****** Buscando o valor **********
-    while (atual.item.getCpf() != v.getCpf()) { // enquanto nao encontrou
+    while (atual.item.getMatricula() != v) { // enquanto nao encontrou
       pai = atual;
-      if (v.getMatricula() < atual.item.getMatricula()) { // caminha para esquerda
+      if (v < atual.item.getMatricula()) { // caminha para esquerda
         atual = atual.esq;
         filho_esq = true; // é filho a esquerda? sim
       } else { // caminha para direita
@@ -78,12 +78,10 @@ public class Tree {
         return false; // encontrou uma folha -> sai
     } // fim laço while de busca do valor
 
-    // **************************************************************
     // se chegou aqui quer dizer que encontrou o valor (v)
     // "atual": contem a referencia ao No a ser eliminado
     // "pai": contem a referencia para o pai do No a ser eliminado
     // "filho_esq": é verdadeiro se atual é filho a esquerda do pai
-    // **************************************************************
 
     // Se nao possui nenhum filho (é uma folha), elimine-o
     if (atual.esq == null && atual.dir == null) {
@@ -166,30 +164,30 @@ public class Tree {
   }
 
   public void caminhar() {
-    System.out.print("\n Exibindo em ordem: ");
+    System.out.println("\n Exibindo em ordem: ");
     inOrder(root);
-    System.out.print("\n Exibindo em pos-ordem: ");
+    /*System.out.print("\n Exibindo em pos-ordem: ");
     posOrder(root);
     System.out.print("\n Exibindo em pre-ordem: ");
-    preOrder(root);
-    System.out.print("\n Altura da arvore: " + altura(root));
-    System.out.print("\n Quantidade de folhas: " + folhas(root));
-    System.out.print("\n Quantidade de Nós: " + contarNos(root));
+    preOrder(root);*/
+    System.out.print("\n\nAltura da arvore: " + altura(root));
+    System.out.print("\nQuantidade de folhas: " + folhas(root));
+    System.out.print("\nQuantidade de Nós: " + contarNos(root));
     if (root != null) { // se arvore nao esta vazia
-      System.out.print("\n Valor minimo: " + min().item);
-      System.out.println("\n Valor maximo: " + max().item);
+      System.out.print("\nValor minimo: " + min().item);
+      System.out.println("\nValor maximo: " + max().item);
     }
   }
 
   public void inOrder(No atual) {
     if (atual != null) {
       inOrder(atual.esq);
-      System.out.print(atual.item + " ");
+      System.out.print(atual.item.toStringLong() + " ");
       inOrder(atual.dir);
     }
   }
 
-  public void preOrder(No atual) {
+ /*/ public void preOrder(No atual) {
     if (atual != null) {
       System.out.print(atual.item + " ");
       preOrder(atual.esq);
@@ -203,7 +201,7 @@ public class Tree {
       posOrder(atual.dir);
       System.out.print(atual.item + " ");
     }
-  }
+  }*/
 
   public int altura(No atual) {
     if (atual == null || (atual.esq == null && atual.dir == null))

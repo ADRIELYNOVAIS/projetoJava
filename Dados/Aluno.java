@@ -98,7 +98,7 @@ public class Aluno{
     
     public String toStringLong(){
         return "Nome: " + nome + "\n" + "CPF: " + cpf + "\n" + "Data de nascimento: " 
-        + dataNascimento + "\n" + "Matricula: " + matricula + "\n" + "Telefone: " + telefone + "\n" + 
+        + dataNascimento.infoDateExt() + "\n" + "Matricula: " + matricula + "\n" + "Telefone: " + telefone + "\n" + 
         "Endereco: " + endereco + "\n" + "E-mail: " + email;
     }
     

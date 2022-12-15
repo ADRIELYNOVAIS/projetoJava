@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import Dados.Aluno;
 
-public class Emprestimo extends EmprestimoLivro{
+public class Emprestimo{
 
   public static void main( String [] args ) throws Exception{
 
