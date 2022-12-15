@@ -1,69 +1,87 @@
 import java.util.Scanner;
-
+import java.util.Calendar;
 import Dados.Aluno;
+import Dados.Data;
+import Dados.Livro;
 
-public class Emprestimo{
+public class Emprestimo {
+  
+  public static void main( String [] args ) {
 
-  public static void main( String [] args ) throws Exception{
-
-    Scanner scanner = new Scanner(System.in);
-
-    System.out.println("\n Escolha uma opcao no sistema da biblioteca: \n");
-    System.out.println("1 - Aluno.");
-    System.out.println("2 - Livro. ");
-    System.out.println("3 - Emprestimo. ");
+    Data dataEmprestimo;
+    boolean estadoLivro;
     
+
+    Scanner scanner = new Scanner( System.in );
+    Calendar data =  Calendar.getInstance();
+
+    Aluno aluno = new Aluno();
+    Livro livro = new Livro();
+
+    Emprestimo( Boolean estadoLivro , Data dataEmprestimo ) {
+
+      this.estadoLivro = estadoLivro;
+      this.dataEmprestimo = dataEmprestimo;
+
+    }
+
+    public void estadoLivro( boolean estadoLivro ) {
+
+       this.estadoLivro = estadoLivro;
+
+    }
+    
+    public boolean getEstadoLivro() {
+
+      return estadoLivro;
+
+    }
+
+    System.out.println( "  EMPRESTIMO  \n Escolha uma opcão: \n" );
+    System.out.println( " 1 - Novo " );
+    System.out.println( " 2 - Renovar " );
+
     int opcao = scanner.nextInt();
 
-    if ( opcao == 1 ){
+    if( opcao == 1 ) {
 
-      Aluno aluno = new Aluno();
-      aluno.nome();
-      aluno.matricula();
+     System.out.println( "Informe a matricula do aluno " );
+     int idAluno = scanner.nextInt();
+     scanner.nextLine();
 
-      System.out.println("Digite o nome do aluno: ");
-      String nome = scanner.nextLine();
-      aluno.nome( nome );
-  
-      System.out.println("Digite matriucla do aluno: ");
-      int matricula = scanner.nextInt();
-      aluno.matricula( matricula );
-      System.out.println("O nome do aluno e: " + aluno.nome() + "\n A matricula do aluno e: " + aluno.matricula() );
-    
-    } else if ( opcao == 2 ){
-     /*
-      CadastroLivro livro = new CadastroLivro(null, null, 0, 0, 0);
-      livro.getTitulo();
-      livro.getEdicao();
-      livro.getEditora();
-      livro.getCodigIdentificacao();
+      if ( idAluno == aluno.getMatricula() ) {
 
-      System.out.println("Digite o titulo do livro: ");
-      String titulo = scanner.nextLine();
-      livro.getTitulo( titulo );
+          //aluno nao estaa afastado -- pesquisa se o aluno existe
+          System.out.println( "Informe o codigo de identificacao do livro :" );
+          int idLivro = scanner.nextInt();
+      
+          if( idLivro == livro.getCodigIdentificacao() ) {
 
-      System.out.println("Digite a edicao do livro: ");
-      String edicao = scanner.nextLine();
-      livro.getEdicao( edicao );
+              dataEmprestimo.setDay(data.get(Calendar.DAY_OF_MONTH));
+              dataEmprestimo.setMonth(data.get(Calendar.MONTH));
+              dataEmprestimo.setYear(data.get(Calendar.YEAR));
+              livro.setDataEmprestimo( dataEmprestimo );
+              Emprestimo.getStatusLivro = false; // mudou o status para indisponivel
+          
+          } else {
 
-      System.out.println("Digite a editora do livro: ");
-      String editora = scanner.nextLine();
-      livro.getEditora( editora );
+              System.out.println( "Livro nao disponivel para emprestimo" );   
+                
+                 }
+        } else {        
+            System.out.println( "E preciso cadastrar o aluno no sistema" ); 
+              } 
 
-      System.out.println("Digite o id do livro: ");
-      String idLivro = scanner.nextLine();
-      livro.getCodigIdentificacao()( idLivro );
-      */
+      }
 
-    } else if ( opcao == 3 ){
+      if( opcao == 2 ) {
 
-    }else{
-      System.out.println(" Opcao invalida ");
-    } 
+        livro.getRenovacoes();
 
-    //STATUS DO LIVRO
-        //DATA DO EMPRESTIMO
-    //RENOVAÇÃO
-    //EMPRESTIMO
-  }
+      } else
+          System.out.println(" opcao invalida ");
+     
+    scanner.close();
+}
+
 }
