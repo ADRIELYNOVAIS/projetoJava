@@ -6,6 +6,7 @@ import Arvore.Tree;
 import Arvore.TreeLivro;
 import Dados.Aluno;
 import Dados.Data;
+import Dados.Livro;
 
 public class Biblioteca {
 
@@ -161,6 +162,32 @@ public class Biblioteca {
 
      public static void cadastroEmprestimo() {
         Scanner scanner = new Scanner(System.in);
+        Aluno aluno = new Aluno();
+        Livro livro = new Livro(endereco, email, telefone, buscaMatricula);
+
+        System.out.println( "Informe a matricula do aluno " );
+        int idAluno = scanner.nextInt();
+        scanner.nextLine();
+
+        if ( idAluno == aluno.getMatricula() ) {
+            System.out.println( "Informe o codigo de identificacao do livro :" );
+            int idLivro = scanner.nextInt();
+
+            if( idLivro == livro.getCodigIdentificacao() ) {
+                
+                Emprestimo emprestimo = new Emprestimo();
+                emprestimo.getEmprestimo();
+                
+            } else { 
+                System.out.println( "Livro nao disponivel para emprestimo" ); 
+                    }
+        } else {        
+             System.out.println( "E preciso cadastrar o aluno no sistema" ); 
+                } 
+    }
+
+    public void cadastroEmprestimo() {
+
         Aluno aluno = new Aluno();
         Livro livro = new Livro(endereco, email, telefone, buscaMatricula);
 

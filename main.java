@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import Arvore.Tree;
-//import Arvore.TreeLivro;
 
 public class main {
     public static void main(String[] args) {
@@ -75,23 +73,7 @@ public class main {
                     System.out.print("\n***********************************");
                     System.out.print("\n-> ");
 
-                    opcao = scanner.nextInt();
-
-                    if (opcao == 1) {
-
-                        Biblioteca biblioteca = new Biblioteca();
-                        biblioteca.cadastroEmprestimo();
-                        break;
-                    }
-
-                    else if (opcao == 2) {
-
-                        Livro livro = new Livro(null, null, opcao, opcao);
-                        livro.renovar();
-                        break;
-                    } else {
-                        System.out.println(" Opcao invalida ");
-                    }
+                    
                 }
             }
         } while (opcao < 0);

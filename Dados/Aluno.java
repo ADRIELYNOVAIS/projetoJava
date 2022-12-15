@@ -102,15 +102,4 @@ public class Aluno{
         "Endereco: " + endereco + "\n" + "E-mail: " + email;
     }
     
-
-    /*RFU3.1- O Deve ser possível incluir, visualizar, alterar e excluir um aluno no
-cadastro da biblioteca. E para realizar o cadastro de um aluno, o aluno deve
-informar o seu nome completo, CPF, fone, data de nascimento, e-mail, endereço,
-turma, número de matrícula e senha.
-RGN3.1.1- Deve ser possível pesquisar um aluno através do seu nome ou de
-sua turma.
-RFU3.2.1- A O vínculo do aluno com a turma será feito a partir do número de
-matrícula, pois assim não precisará renovar o cadastro dele na biblioteca*/
-
-
 }
