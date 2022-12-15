@@ -31,7 +31,7 @@ public class Emprestimo {
 
     }
     
-    public boolean getEstadoLivro() {
+    private boolean getEstadoLivro() {
 
       return estadoLivro;
 
@@ -44,6 +44,7 @@ public class Emprestimo {
     int opcao = scanner.nextInt();
 
     if( opcao == 1 ) {
+
 
      System.out.println( "Informe a matricula do aluno " );
      int idAluno = scanner.nextInt();

@@ -18,7 +18,6 @@ public class Biblioteca {
     Tree arv = new Tree();
     TreeLivro arvLivro = new TreeLivro();
 
-    public Biblioteca(){}
 
     public void cadatroAluno() {
 
