@@ -23,7 +23,9 @@ public class Aluno{
         this(nomeString, emailString, emailString, matriculaInt, telefoneInt, telefoneInt, dataNascimento);
     }
 
-    public Aluno (){}
+    public Aluno (){
+        this(null, null, null, 0, 0, 0, null);
+    }
 
     //Getter's
     public String getNome() {

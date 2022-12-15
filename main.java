@@ -1,12 +1,13 @@
 import java.util.Scanner;
 import Arvore.Tree;
+import Arvore.TreeLivro;
 
 public class main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         Tree alunoTree = new Tree();
-        // TreeLivro livroTree = new TreeLivro();
+        TreeLivro livroTree = new TreeLivro();
         int opcao = -1;
 
         do {
@@ -14,7 +15,7 @@ public class main {
             System.out.println("1 - Aluno.");
             System.out.println("2 - Livro.");
             System.out.println("3 - Emprestimo.");
-            System.out.println("0 - Sair");
+            System.out.println("0 - Fechar");
 
             opcao = scanner.nextInt();
 
@@ -54,6 +55,7 @@ public class main {
                     break;
                 }
                 case 2: {
+                    do{
                     System.out.print("\n**********************************");
                     System.out.print("\nEntre com a opcao:");
                     System.out.print("\n ----1: Inserir livro");
@@ -61,8 +63,30 @@ public class main {
                     System.out.print("\n ----3: Pesquisar livro");
                     System.out.print("\n ----4: Exibir livro");
                     System.out.print("\n ----5: Atualizar livro");
+                    System.out.print("\n ----6: Sair");
                     System.out.print("\n***********************************");
                     System.out.print("\n-> ");
+
+                    opcao = scanner.nextInt();
+
+                        switch (opcao) {
+                            case 1:
+                                Biblioteca.cadastroLivro(livroTree);
+                                break;
+                            case 2:
+                                Biblioteca.excluirLivro(livroTree);
+                                break;
+                            case 3:
+                                System.out.println(Biblioteca.buscarLivro(livroTree));
+                                break;
+                            case 4:
+                                Biblioteca.imprimirArvore(livroTree);
+                                break;
+                            case 5:
+                                Biblioteca.alterarLivro(livroTree);
+                                break;
+                        }
+                    }while(opcao <6);
                     break;
                 }
                 case 3: {
@@ -93,7 +117,7 @@ public class main {
                     }
                 }
             }
-        } while (opcao < 0);
+        } while (opcao > 0);
         scanner.close();
     }
 }

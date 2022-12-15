@@ -19,6 +19,10 @@ public class Livro{
         this(tituloLivro, codigo, numeroP, edicao);
     }
 
+    public Livro(){
+        this(null, null, 0, 0);
+    }
+
     public Livro(String tituloLivro, int codigo, int numeroP, int edicao) {
         this(tituloLivro, null, codigo, numeroP, edicao, null);
     }

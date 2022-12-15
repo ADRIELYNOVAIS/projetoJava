@@ -110,7 +110,7 @@ public class Data {
 
     public String infoDateExt() {
         if (chekdate()) {
-            return day + " de " + mesExtenso[month - 1] + " de " + year;
+            return day + " de " + mesExtenso[month] + " de " + year;
         } else {
             return "Data Invalida.";
         }
